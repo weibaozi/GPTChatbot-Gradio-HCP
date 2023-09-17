@@ -1,4 +1,5 @@
 import json
+import os
 def are_strings_similar(s1, s2):
     # Convert both strings to lowercase for case-insensitive comparison
     if not (isinstance(s1, str) and isinstance(s2, str)):
@@ -49,3 +50,12 @@ def format_json(json_data, indent=0,persona={}):
     else:
         formatted_str += " " * indent + str(json_data) + ""
     return formatted_str
+
+def get_tones():
+    #search all tones txt file in folder tones, make a dictionary of tone name and the tone content
+    tones = {}
+    for filename in os.listdir("tones"):
+        if filename.endswith(".txt"):
+            with open("tones/"+filename) as f:
+                tones[filename[:-4]] = f.read()
+    return tones
