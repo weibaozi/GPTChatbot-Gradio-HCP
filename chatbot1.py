@@ -13,7 +13,7 @@ class ChatBot:
     def __init__(self,prompt = default_prompt):
         self.chat_history = []
         self.model = "gpt-3.5-turbo"
-        self.max_tokens = 200
+        self.max_tokens = 500
         self.prompt = prompt
         self.chat_history.append({"role": "system", "content": self.prompt})
     
@@ -55,7 +55,7 @@ class ChatBot:
         return output
 
 def extractSymptoms(message):
-    prompt="""you are an entity extractor, you will extract the information two the following big categories: Symptoms, patient's characteristics and other details from the conversationchara, and output the result
+    prompt="""you are an entity extractor, you will extract th2e information two the following big categories: Symptoms, patient's characteristics and other details from the conversationchara, and output the result
     to a json data structure, do not add true/false for the result. I want symptoms to be a list of strings"""
     # print("extracting symptoms!!!!!!!!!!!!!!!q")
     # print(message)
