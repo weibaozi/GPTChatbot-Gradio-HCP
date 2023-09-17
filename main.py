@@ -52,9 +52,32 @@ with gr.Blocks() as demo:
             birth=gr.Textbox(label="Date of Birth",value=persona["birth"],interactive=True)
         symptoms=gr.Textbox(label="Current Symptoms",value=list_to_string(persona["symptoms"]),interactive=True)
         detail=gr.Textbox(label="Other details",value=persona["detail"],interactive=True)
-        #clearButton=gr.Button("Clear Persona")
-        # def parse_helper(out):
-        #     for
+        clearButton=gr.Button("Clear Persona")
+        
+
+        def persona_update():
+            return {name: gr.update(value=persona["name"],interactive=True),
+                        age: gr.update(value=persona["age"]),
+                        race: gr.update(value=persona["race"]),
+                        height: gr.update(value=persona["height"]),
+                        weight: gr.update(value=persona["weight"]),
+                        gender: gr.update(value=persona["gender"]),
+                        occupation: gr.update(value=persona["occupation"]),
+                        phone: gr.update(value=persona["phone"]),
+                        birth: gr.update(value=persona["birth"]),
+                        symptoms: gr.update(value=list_to_string(persona["symptoms"])),
+                        detail: gr.update(value=persona["detail"])}
+        def clearPersona():
+            global persona
+            persona = {key: "" for key in persona_keys}
+            #delete local person.json
+            try:
+                os.remove("persona.json")
+            except:
+                pass
+            return persona_update()
+        clearButton.click(fn=clearPersona,inputs=[],outputs=[name,age,race,height,weight,gender,occupation,
+                                                                        phone,birth,symptoms,detail])
         def extractSymptoms_helper(save=False):
                 user_input = bot.exportUserInputs()
                 result=''

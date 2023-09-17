@@ -26,7 +26,7 @@ def are_strings_similar(s1, s2):
 def list_to_string(l):
     #type check
     if not isinstance(l,list):
-        return "Error: input is not a list"
+        return ""
     s = ""
     for i in l:
         s+=i+","
